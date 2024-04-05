@@ -8,7 +8,7 @@ CSS e Bootstrap: Utilizados para estilização e design responsivo da aplicaçã
 API do Google Maps: Integrada para fornecer recursos de localização e visualização de mapas.
 Node.js e Express: Utilizados para criar o backend da aplicação e gerenciar as requisições HTTP.
 Mongoose e MongoDB: Utilizados para modelagem e persistência de dados no banco de dados NoSQL MongoDB.
-Gateway de Pagamento: Implementado para processar transações financeiras de forma segura.
+Gateway de Pagamento (Pagar.me): Implementado para processar transações financeiras de forma segura em modo de desenvolvimento.
 Redux e Redux Saga: Utilizados para gerenciar o estado global da aplicação e lidar com efeitos colaterais de forma assíncrona.
 
 
