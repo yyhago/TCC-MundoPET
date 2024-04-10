@@ -1,8 +1,94 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='date']{
+  font-size: 15px;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='date'],
+input[type='text']:disabled,
+input[type='email']:disabled,
+input[type='password']:disabled,
+input[type='date']:disabled{
+  background-color: #fefefe;
+  border: 0.5px solid #dcdcdc;
+  outline: none;
+  color: #626264;
+}
+
+.btn{
+  font-size: 15px;
+}
+
+.bg-secondary{
+  background-color: var(--colorBlue) !important;
+}
+
+.btn-secondary,
+.btn-secondary:focus,
+.btn-secondary:active,
+.btn-secondary:disabled,
+.btn-secondary:hover{
+  background-color: var(--colorBlue) !important;
+  border-color: var(--primary);
+}
+
+
+:root{
+  --primary: #F28705;
+  --sebPrimary: #F25C05;
+  --colorBlue: #0583F2;
+  --colorPurple:#6626BF;
+  --colorYellow: #F2B705;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 html,body{
   height: 100%;
   overflow-y: hidden;
   font-family: "Poppins", sans-serif;
   letter-spacing: -0.03em;
+}
+
+.bg-primary{
+  background-color: var(--primary) !important;
+}
+
+.box{
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #fff;
+  box-shadow: 0px 0px 11px 6px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  display: inline-block;
+  padding: 50px;
+}
+
+.containerLogo{
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  width: 400px;
+  height: 100px;
+  margin-bottom: 4%;
+  background-color: var(--colorBlue);
+  border-radius: 12px;
+}
+
+.imgLogo{
+  margin-top: 4px;
+  padding: 1%;
+  width: 400px;
+  height: 100px;
+  object-fit: cover;
 }
