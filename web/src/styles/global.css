@@ -35,7 +35,6 @@ input[type='date']:disabled{
 .btn-secondary:disabled,
 .btn-secondary:hover{
   background-color: var(--colorBlue) !important;
-  border-color: var(--primary);
 }
 
 
@@ -43,6 +42,7 @@ input[type='date']:disabled{
   --primary: #F28705;
   --sebPrimary: #F25C05;
   --colorBlue: #0583F2;
+  --colorLessBlue:#0097B2;
   --colorPurple:#6626BF;
   --colorYellow: #F2B705;
 }
@@ -74,21 +74,16 @@ html,body{
   padding: 50px;
 }
 
-.containerLogo{
-  display: flex;
-  justify-content: center;
-  margin: 0 auto;
-  width: 400px;
-  height: 100px;
-  margin-bottom: 4%;
-  background-color: var(--colorBlue);
-  border-radius: 12px;
+.imgIllustration{
+  margin-left: 35%;
 }
 
-.imgLogo{
-  margin-top: 4px;
-  padding: 1%;
-  width: 400px;
-  height: 100px;
-  object-fit: cover;
+.ContentBox{
+  display: flex;
+  padding-top: 5%;
+  padding-bottom: 5%; 
+}
+
+.footerCadastro{
+  text-align: center;
 }

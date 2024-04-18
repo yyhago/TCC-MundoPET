@@ -1,19 +1,17 @@
-import Logo from '../../../assets/logo.png'
+import Header from '../../header/header'
 import Illustration from '../../../assets/illustration.png'
 
 const Cadastro = () => {
   return(
-    <div className="container-fluid h-100 bg-primary p-3">
-      <div className="containerLogo col-12">
-          <img src={Logo} alt="Logo" className="imgLogo"/>
-      </div>
-      <div className="row">
+    <div className="container-fluid h-100 bg-primary">
+      <Header logoVersion/>
+      <div className="row ContentBox">
         <div className="col-6 text-right my-auto">
-          <img src={Illustration} alt="Logo" className="img-fluid" />
+          <img src={Illustration} alt="Logo" className="img-fluid imgIllustration" />
         </div>
         <div className="col-6">
-          <div className="box col-8">
-            <h2 className="text-center fs-1">Falta bem pouco para mudar o humor do seu pet, e deixar ele feliz!</h2>
+          <div className="box col-7">
+            <h2 className="text-center">Falta bem pouco para mudar o humor do seu pet, e deixar ele feliz!</h2>
             <hr/>
             <br/>
             <input type="text" className="form-control form-control-lg mb-3" placeholder="Nome Completo" />
@@ -24,6 +22,9 @@ const Cadastro = () => {
             <button className="btn btn-lg btn-block btn-secondary w-100">Finalizar Pedido</button>
           </div>
         </div>
+      </div>
+      <div className="footerCadastro">
+        <strong>Não vai deixar seu pet na mão né!</strong>
       </div>
     </div>
   )
