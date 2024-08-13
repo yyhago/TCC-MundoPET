@@ -29,6 +29,11 @@ input[type='date']:disabled{
   background-color: var(--colorBlue) !important;
 }
 
+.btn-primary{
+  background-color: var(--primary) !important;
+  border: none;
+}
+
 .btn-secondary,
 .btn-secondary:focus,
 .btn-secondary:active,

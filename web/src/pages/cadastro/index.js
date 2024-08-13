@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from '../../header/header';
-import Illustration from '../../../assets/illustration.png';
+import Header from '../../components/header/header';
+import Illustration from '../../assets/illustration.png';
 
 const Cadastro = () => {
   return (
