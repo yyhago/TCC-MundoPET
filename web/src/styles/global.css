@@ -26,11 +26,11 @@ input[type='date']:disabled{
 }
 
 .bg-secondary{
-  background-color: var(--colorBlue) !important;
+  background-color: rgb(var(--colorBlue)) !important;
 }
 
 .btn-primary{
-  background-color: var(--primary) !important;
+  background-color: rgb(var(--primary)) !important;
   border: none;
 }
 
@@ -39,17 +39,18 @@ input[type='date']:disabled{
 .btn-secondary:active,
 .btn-secondary:disabled,
 .btn-secondary:hover{
-  background-color: var(--colorBlue) !important;
+  background-color: rgb(var(--colorBlue)) !important;
 }
 
-:root{
-  --primary: #F28705;
-  --sebPrimary: #F25C05;
-  --colorBlue: #0583F2;
-  --colorLessBlue:#0097B2;
-  --colorPurple:#6626BF;
-  --colorYellow: #F2B705;
+:root {
+  --primary: 242, 135, 5;
+  --sebPrimary: 242, 92, 5;
+  --colorBlue: 5, 131, 242;
+  --colorLessBlue: 0, 151, 178;
+  --colorPurple: 102, 38, 191;
+  --colorYellow: 242, 183, 5;
 }
+
 
 *{
   margin: 0;
@@ -64,7 +65,7 @@ html,body{
 }
 
 .bg-primary{
-  background-color: var(--primary) !important;
+  background-color: rgb(var(--primary)) !important;
 }
 
 .box{
@@ -101,10 +102,28 @@ html,body{
 
 .footerCadastro{
   text-align: center;
-  background-color: var(--primary);
+  background-color: rgb(var(--primary));
   padding: 10px;
   color: rgb(0, 0, 0);
 }
+
+.badge{
+  font-weight: 400;
+  background: rgba(var(--primary), 0.2);
+  color: rgb(var(--primary));
+}
+
+.badge .badge-primary{
+  background: rgba(var(--primary), 0.1);
+  color: rgb(var(--primary));
+}
+
+.badge .badge-secondary{
+  background: rgba(var(--sebPrimary), 0.1);
+  color: rgb(var(--sebPrimary));
+}
+
+
 
 @media (max-width: 1200px) {
   .box {
