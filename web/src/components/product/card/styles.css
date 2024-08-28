@@ -1,0 +1,35 @@
+.product {
+  margin-bottom: 50px;
+  position: relative;
+}
+
+.product-image-container {
+  position: relative;
+}
+
+.product img {
+  border: 1px solid #D5D5D5;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 20px;
+  max-height: 210px;
+  width: 100%;
+}
+
+.product .badge {
+  margin-bottom: 0;
+}
+
+.product small {
+  margin-top: 0;
+  line-height: 15px;
+  display: block;
+}
+
+.product button {
+  position: absolute;
+  right: 5px;
+  bottom: 15px;
+  font-size: 27px;
+  padding: 1px 12px;
+}

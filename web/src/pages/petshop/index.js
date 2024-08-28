@@ -1,4 +1,5 @@
 import Header from "../../components/header/header"
+import Product from "../../components/product/card";
 import Icon from '@mdi/react';
 
 import { mdiStar } from '@mdi/js';
@@ -33,7 +34,15 @@ const PetShop = () => {
             <label className="badge badge-primary">Frete Grátis</label>
 
           </div>
-          <div className="col-10"></div>
+          <div className="col-10">
+            <h5>Produtos: </h5>
+            <br/>
+            <div className="row">
+              {[1,2,3,4,5,6,7,8,9].map((p) => (
+                <Product />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
