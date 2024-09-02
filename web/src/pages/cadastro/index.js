@@ -6,7 +6,7 @@ const Cadastro = () => {
   return (
     <div className="d-flex flex-column h-100">
       <div className="container-fluid flex-grow-1 bg-primary d-flex flex-column">
-        <Header logoVersion /> {/*Componente Header*/}
+        <Header logoVersion hideCart /> {/*Componente Header*/}
         <div className="row flex-grow-1 ContentBox justify-content-center">
 
         <div className="col-lg-6 d-none d-lg-flex text-center my-auto"> {/*Illustation*/}

@@ -4,8 +4,6 @@
 
 .product-list .badge {
   margin-bottom: 0;
-  background-color: var(--colorBlue);
-  color: #fff;
 }
 
 .product-list img {
@@ -22,7 +20,7 @@
 }
 
 .product-list button {
-  padding: 5px 10px;
+  padding: 6px 14px;
   font-size: 20px;
   margin-top: 10px;
 }

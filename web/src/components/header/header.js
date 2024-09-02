@@ -6,7 +6,7 @@ import { mdiCart } from '@mdi/js';
 
 import './styles.css'
 
-export default function Header({ logoVersion }){
+export default function Header({ logoVersion, hideCart }){
 
   const openDrawer = () => { // Função que dispara um novo evento chamado 'openCart' na tela!
     const event = new CustomEvent('openCart');
@@ -19,9 +19,11 @@ export default function Header({ logoVersion }){
       <header className="py-4 px-4 text-center"> {/*Logo com alteração manual com parâmetros*/}
         <img src={logoVersion ? LogoFundo : Logo} alt="LogoMundoPet" className="img-fluid" />
       </header>
-      <button onClick={() => openDrawer()} className='btn btn-secondary cart-button'> {/*Botão de carrinho*/}
-        <Icon className='mdi' path={mdiCart} size={1} /> 3 Ítens
-      </button>
+      {!hideCart && 
+        (<button onClick={() => openDrawer()} className='btn btn-secondary cart-button'> {/*Botão de carrinho*/}
+          <Icon className='mdi' path={mdiCart} size={1} /> 3 Ítens
+        </button>
+      )}
 
     </div>
   )
