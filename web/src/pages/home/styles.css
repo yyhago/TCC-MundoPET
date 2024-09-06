@@ -2,10 +2,16 @@
   height: 300px;
   position: absolute;
   margin-bottom: 0;
-  top: 160px;
   z-index: 999;
   left: 0;
   right: 0;
+
+  background: linear-gradient(
+    180deg,
+    #fff 55.48%,
+    rgba(255,255,255,0) 100%
+  );
+
 }
 
 .petshop-list{

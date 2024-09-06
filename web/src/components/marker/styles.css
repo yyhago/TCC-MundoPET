@@ -1,0 +1,75 @@
+.custom-marker-icon {
+  position: relative;
+  display: inline-block;
+}
+
+.marker-icon {
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle at 30% 30%, #ffa500, #ff8c00);
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  box-shadow: 
+    0 0 0 4px rgba(255, 165, 0, 0.3),
+    0 0 0 8px rgba(255, 165, 0, 0.2),
+    0 0 20px rgba(0, 0, 0, 0.3);
+  animation: pulse 1.5s infinite alternate;
+}
+
+.marker-icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 40px;
+  height: 40px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.img-marker {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+@keyframes pulse {
+  0% {
+    transform: rotate(-45deg) scale(1);
+  }
+  100% {
+    transform: rotate(-45deg) scale(1.1);
+  }
+}
+
+/* Opcional: Adicionar um efeito de onda */
+.marker-icon::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border: 2px solid #ffa500;
+  border-radius: 50% 50% 50% 0;
+  animation: ripple 1.5s infinite;
+}
+
+@keyframes ripple {
+  0% {
+    transform: rotate(-45deg) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(-45deg) scale(1.5);
+    opacity: 0;
+  }
+}

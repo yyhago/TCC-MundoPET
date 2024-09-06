@@ -1,0 +1,5 @@
+.container-map {
+  height: calc(100% - 94px);
+  width: 100%;
+  position: relative;
+}
