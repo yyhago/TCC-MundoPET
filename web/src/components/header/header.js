@@ -3,6 +3,7 @@ import Logo from '../../assets/LogoSemFundo.png'
 
 import Icon from '@mdi/react';
 import { mdiCart } from '@mdi/js';
+import { Link } from 'react-router-dom'
 
 import './styles.css'
 
@@ -17,7 +18,10 @@ export default function Header({ logoVersion, hideCart }){
     <div className="col-12">
 
       <header className="py-4 px-4 text-center"> {/*Logo com alteração manual com parâmetros*/}
-        <img src={logoVersion ? LogoFundo : Logo} alt="LogoMundoPet" className="img-fluid" />
+        <Link to="/">
+          <img src={logoVersion ? LogoFundo : Logo} alt="LogoMundoPet" className="img-fluid" />
+        </Link>
+        
       </header>
       {!hideCart && 
         (<button onClick={() => openDrawer()} className='btn btn-secondary cart-button'> {/*Botão de carrinho*/}
