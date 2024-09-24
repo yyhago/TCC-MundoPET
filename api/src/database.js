@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const URI = 'mongodb://localhost/mundopet'; // Certifique-se de que o URI esteja correto
+const URI = 'mongodb://localhost/mundopet';
 
 mongoose.set('debug', true);
 

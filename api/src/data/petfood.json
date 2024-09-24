@@ -1,0 +1,122 @@
+[
+  {
+    "nome": "PetLand Express Hortolândia",
+    "logo": "https://i.imgur.com/zxPLkIi.png",
+    "categoria": "$$$",
+    "destaque": 1,
+    "location": {
+      "lat": -22.851500,
+      "lng": -47.213200
+    },
+    "produtos": [
+      {
+        "nome": "Ração Premium para Gatos Adultos 2kg",
+        "capa": "https://i.imgur.com/06bVol3.png",
+        "preco": 49.90,
+        "avaliacoes": 4.7
+      },
+      {
+        "nome": "Brinquedo Interativo para Cães",
+        "capa": "https://i.imgur.com/07cWol4.png",
+        "preco": 29.99,
+        "avaliacoes": 4.3
+      }
+    ]
+  },
+  {
+    "nome": "Mundo Animal Hortolândia",
+    "logo": "https://i.imgur.com/abcDEF1.png",
+    "categoria": "$$",
+    "destaque": 0,
+    "location": {
+      "lat": -22.852000,
+      "lng": -47.212500
+    },
+    "produtos": [
+      {
+        "nome": "Coleira antiparasitária para cães",
+        "capa": "https://i.imgur.com/08dXol5.png",
+        "preco": 35.50,
+        "avaliacoes": 4.8
+      },
+      {
+        "nome": "Areia sanitária para gatos 4kg",
+        "capa": "https://i.imgur.com/09eYol6.png",
+        "preco": 22.90,
+        "avaliacoes": 4.5
+      }
+    ]
+  },
+  {
+    "nome": "Pet & Cia Hortolândia",
+    "logo": "https://i.imgur.com/ghiJKL2.png",
+    "categoria": "$",
+    "destaque": 1,
+    "location": {
+      "lat": -22.853500,
+      "lng": -47.214000
+    },
+    "produtos": [
+      {
+        "nome": "Shampoo hipoalergênico para cães 500ml",
+        "capa": "https://i.imgur.com/10fZol7.png",
+        "preco": 18.50,
+        "avaliacoes": 4.6
+      },
+      {
+        "nome": "Comedouro automático para gatos",
+        "capa": "https://i.imgur.com/11gAol8.png",
+        "preco": 89.90,
+        "avaliacoes": 4.2
+      }
+    ]
+  },
+  {
+    "nome": "Amigo Fiel Pet Shop Hortolândia",
+    "logo": "https://i.imgur.com/mnoOPQ3.png",
+    "categoria": "$$",
+    "destaque": 0,
+    "location": {
+      "lat": -22.852800,
+      "lng": -47.213800
+    },
+    "produtos": [
+      {
+        "nome": "Cama ortopédica para cães idosos",
+        "capa": "https://i.imgur.com/12hBol9.png",
+        "preco": 129.99,
+        "avaliacoes": 4.9
+      },
+      {
+        "nome": "Ração úmida para gatos filhotes 85g",
+        "capa": "https://i.imgur.com/13iCol0.png",
+        "preco": 3.99,
+        "avaliacoes": 4.7
+      }
+    ]
+  },
+  {
+    "nome": "Pet Feliz Hortolândia",
+    "logo": "https://i.imgur.com/rstUVW4.png",
+    "categoria": "$$$",
+    "destaque": 1,
+    "location": {
+      "lat": -22.851200,
+      "lng": -47.215500
+    },
+    "produtos": [
+      {
+        "nome": "Aquário completo 50L",
+        "capa": "https://i.imgur.com/14jDol1.png",
+        "preco": 399.90,
+        "avaliacoes": 4.4
+      },
+      {
+        "nome": "Gaiola para hamster com tubos",
+        "capa": "https://i.imgur.com/15kEol2.png",
+        "preco": 149.90,
+        "avaliacoes": 4.6
+      }
+    ]
+  }
+]
