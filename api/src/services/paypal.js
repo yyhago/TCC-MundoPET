@@ -1,59 +1,83 @@
 const axios = require('axios');
 const { clientId, secret } = require('../data/keys');
 
-const api = axios.create({
-    baseURL: 'https://api-m.sandbox.paypal.com/v1',
-});
+const PAYPAL_API = 'https://api-m.sandbox.paypal.com';
 
 // Função para obter o token de acesso
 const getAccessToken = async () => {
-    const response = await axios({
-        method: 'post',
-        url: 'https://api-m.sandbox.paypal.com/v1/oauth2/token',
-        headers: {
-            'Accept': 'application/json',
-            'Accept-Language': 'pt_BR',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': `Basic ${Buffer.from(`${clientId}:${secret}`).toString('base64')}`
-        },
-        data: 'grant_type=client_credentials'
-    });
-    return response.data.access_token;
+    try {
+        console.log('Obtendo token de acesso do PayPal...');
+        const response = await axios({
+            method: 'post',
+            url: `${PAYPAL_API}/v1/oauth2/token`,
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': `Basic ${Buffer.from(`${clientId}:${secret}`).toString('base64')}`
+            },
+            data: 'grant_type=client_credentials'
+        });
+        console.log('✅ Token obtido com sucesso');
+        return response.data.access_token;
+    } catch (error) {
+        console.error('❌ Erro ao obter token:', error.response?.data || error.message);
+        throw error;
+    }
 };
 
-// Interceptor para adicionar o Authorization Bearer token nas requisições
-api.interceptors.request.use(async (config) => {
-    const token = await getAccessToken();
-    config.headers.Authorization = `Bearer ${token}`;
-    return config;
-});
-
-module.exports = { 
-    createRecipient: async (receiverEmail, productName) => {
-        try {
-            const response = await api.post('/payments/payouts', {
-                "sender_batch_header": {
-                    "sender_batch_id": `Payouts_${Date.now()}`,
-                    "email_subject": "Você recebeu um pagamento!",
-                    "email_message": `Você recebeu um pagamento por ${productName} através do ADM MundoPet`
+// Função simplificada para criar recipient
+const createRecipient = async (receiverEmail, businessName) => {
+    try {
+        console.log(`\nCriando recipient para ${businessName}`);
+        const token = await getAccessToken();
+        
+        
+        const response = await axios({
+            method: 'post',
+            url: `${PAYPAL_API}/v1/payments/payouts`,
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            data: {
+                sender_batch_header: {
+                    sender_batch_id: `Batch_${Date.now()}_${businessName.replace(/\s+/g, '')}`,
+                    email_subject: "Cadastro realizado com sucesso!",
+                    email_message: `Bem-vindo ao MundoPet! Seu cadastro para ${businessName} foi realizado com sucesso.`
                 },
-                "items": [
-                    {
-                        "recipient_type": "EMAIL",
-                        "amount": {
-                            "value": "1.00", 
-                            "currency": "BRL"
-                        },
-                        "note": `Obrigado por sua participação! Produto: ${productName}`,
-                        "sender_item_id": `item_${Date.now()}`,
-                        "receiver": receiverEmail
-                    }
-                ]
-            });
+                items: [{
+                    recipient_type: "EMAIL",
+                    amount: {
+                        value: "50.00",
+                        currency: "BRL"
+                    },
+                    note: `Registro para: ${businessName}`,
+                    sender_item_id: `Register_${Date.now()}`,
+                    receiver: receiverEmail
+                }]
+            }
+        });
 
-            return { error: false, data: response.data };
-        } catch (error) {
-            return { error: true, message: error.message };
-        }
+        console.log('✅ Recipient criado com sucesso');
+        
+        // Retornando um ID único baseado no batch_id
+        return {
+            error: false,
+            data: {
+                id: response.data.batch_header.payout_batch_id,
+                batch_status: response.data.batch_header.batch_status
+            }
+        };
+    } catch (error) {
+        console.error('❌ Erro ao criar recipient:', error.response?.data || error.message);
+        return {
+            error: true,
+            message: error.response?.data?.message || error.message,
+            details: error.response?.data
+        };
     }
-}
+};
+
+module.exports = {
+    createRecipient
+};

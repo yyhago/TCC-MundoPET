@@ -1,34 +1,47 @@
 const Petshop = require('../models/petshop');
-const Product = require('../models/product'); 
+const Product = require('../models/product');
 const petshops = require('./petfood.json');
-const createRecipient = require('../services/paypal').createRecipient;
+const { createRecipient } = require('../services/paypal');
 
-//database
 require('../database');
 
-// Função assíncrona para adicionar pet shops e produtos ao banco de dados
+
 const addPetshopAndProducts = async () => {
     try {
-        // Itera sobre cada pet shop no JSON
-        for (let petshop of petshops) {                 // EMAIL SECUNDÁRIO BUSSINES
-            const recipient = await createRecipient('sb-5nw6n26611614@business.example.com', petshop.produtos[0].nome); // Passa o nome do primeiro produto
-
-            // Cria um novo pet shop no banco de dados
-            if (!recipient.error) {
-                const newPetshop = await Petshop.create({...petshop, recipient_id: recipient.data.id}); 
-                // Prepara os produtos para inserção, associando cada um ao pet shop
-                const productsWithPetshopId = petshop.produtos.map(p => ({ ...p, petshop_id: newPetshop._id }));
+        for (let petshop of petshops) {
+            try {
+                console.log(`\n=== Iniciando processamento do petshop: ${petshop.nome} ===`);
                 
-                // Insere todos os produtos na coleção Product
+
+                const recipient = await createRecipient(
+                    'sb-5nw6n26611614@business.example.com', // Email business do sandbox
+                    petshop.nome
+                );
+
+                if (recipient.error) {
+                    console.error(`❌ Erro ao criar recipient para ${petshop.nome}:`, recipient.message);
+                    continue;
+                }
+
+                const newPetshop = await Petshop.create({
+                    ...petshop,
+                    recipient_id: recipient.data.id
+                });
+
+                const productsWithPetshopId = petshop.produtos.map(p => ({
+                    ...p,
+                    petshop_id: newPetshop._id
+                }));
+
                 await Product.insertMany(productsWithPetshopId);
-            } else {
-                console.log(recipient.message);
+                console.log(`✅ Petshop ${petshop.nome} e seus produtos foram cadastrados com sucesso`);
+
+            } catch (petshopError) {
+                console.error(`❌ Erro ao processar petshop ${petshop.nome}:`, petshopError);
             }
         }
-
-        console.log('Final do script!'); 
     } catch (error) {
-        console.error('Erro:', error);
+        console.error('❌ Erro geral:', error);
     }
 };
 
