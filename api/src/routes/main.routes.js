@@ -57,4 +57,25 @@ router.post("/purchase", async (req, res) => {
     res.status(500).json({ error: true, message: error.message });
   }
 });
+
+
+/***
+ * 
+ * [
+  {
+    "recipientEmail": "sb-owwkz26611905@business.example.com",
+    "recipientName": "Petshop A",
+    "amount": "100.00"
+  },
+  {
+    "recipientEmail": "sb-5nw6n26611614@business.example.com",
+    "recipientName": "Petshop B",
+    "amount": "150.00"
+  }
+]
+
+ */
+
+
+
 module.exports = router;
