@@ -3,7 +3,7 @@ import 'leaflet/dist/leaflet.css';
 import './styles.css';
 import Marker from '../marker';
 
-const Map = () => {
+const Map = ({ petshops }) => {
   return (
     <div className="container-map">
       <MapContainer
@@ -16,7 +16,7 @@ const Map = () => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
-        <Marker lat={-22.8722787} lng={-47.2102212} />
+        {petshops.map( p => <Marker lat={p.location.lat} lng={p.location.lng} />)}
       </MapContainer>
     </div>
   );

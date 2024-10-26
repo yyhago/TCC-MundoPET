@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import setCustomer from '../../store/modules/shop/actions'; 
+import { setCustomer } from '../../store/modules/shop/actions';
+
 
 import Header from '../../components/header/header';
 import Illustration from '../../assets/illustration.png';
