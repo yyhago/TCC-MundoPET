@@ -5,8 +5,8 @@
     "categoria": "$$$",
     "destaque": 4.2,
     "location": {
-      "lat": -22.870402,
-      "lng": -47.210839
+      "lat": -22.867830,
+      "lng": -47.214373
     },
     "produtos": [
       {
@@ -29,8 +29,8 @@
     "categoria": "$$",
     "destaque": 2.8,
     "location": {
-      "lat": -22.871790,
-      "lng": -47.215062
+      "lat": -22.871520,
+      "lng": -47.201794
     },
     "produtos": [
       {
@@ -53,8 +53,8 @@
     "categoria": "$",
     "destaque": 5.0,
     "location": {
-      "lat": -22.874832,
-      "lng": -47.210506
+      "lat": -22.873220,
+      "lng": -47.216514
     },
     "produtos": [
       {
@@ -77,8 +77,8 @@
     "categoria": "$$",
     "destaque": 4.2,
     "location": {
-      "lat": -22.873453,
-      "lng": -47.206689
+      "lat": -22.877431,
+      "lng": -47.208188
     },
     "produtos": [
       {
@@ -101,8 +101,8 @@
     "categoria": "$$$",
     "destaque": 3.7,
     "location": {
-      "lat": -22.869880,
-      "lng": -47.214057
+      "lat": -22.868791,
+      "lng": -47.218681
     },
     "produtos": [
       {

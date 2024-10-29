@@ -16,7 +16,7 @@ const Map = ({ petshops }) => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
-        {petshops.map( p => <Marker lat={p.location.lat} lng={p.location.lng} />)}
+        {petshops.map( p => <Marker petshop={p} lat={p.location.lat} lng={p.location.lng} />)}
       </MapContainer>
     </div>
   );

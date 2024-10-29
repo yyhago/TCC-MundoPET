@@ -1,15 +1,14 @@
 import { Marker as LeafletMarker, Popup } from 'react-leaflet';
 import L from 'leaflet';
-import './styles.css'; 
+import './styles.css';
 
-
-const createIcon = () => {
+const createIcon = (petshop) => {
   return L.divIcon({
     className: 'custom-marker-icon',
     html: `
       <div class="marker-icon">
-        <img src="https://marketplace.canva.com/EAGEl51-V8U/1/0/1600w/canva-logotipo-para-petshop-para-pequenos-animais-silhueta-azul-e-branco-0p_KpsHDZl0.jpg" 
-             alt="Logo" 
+        <img src="${petshop.logo}"
+             alt="Logo"
              class="img-marker"
         />
       </div>
@@ -20,11 +19,11 @@ const createIcon = () => {
   });
 };
 
-const Marker = ({ lat, lng }) => {
+const Marker = ({ petshop, lat, lng }) => {
   return (
-    <LeafletMarker position={[lat, lng]} icon={createIcon()}>
+    <LeafletMarker position={[lat, lng]} icon={createIcon(petshop)}>
       <Popup>
-        <span>Etec Hortolândia</span>
+        <span>{petshop.nome}</span>
       </Popup>
     </LeafletMarker>
   );
