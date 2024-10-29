@@ -3,7 +3,9 @@
   padding: 7px;
   margin-right: 20px;
   border-radius: 5px;
-  border-bottom: 3px;
+  border-bottom: 3px transparent;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .petshop img{
@@ -35,4 +37,11 @@
 .content-div{
   padding-left: 10px;
   margin-bottom: 0;
+}
+
+.petshop.active {
+  border-bottom: 3px solid rgb(var(--primary));
+  transition: 0.5s;
+  background: #f6f5f5;
+  transform: scale(1.02);
 }

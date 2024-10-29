@@ -1,12 +1,14 @@
 import { Marker as LeafletMarker, Popup } from 'react-leaflet';
+import { useSelector } from 'react-redux';
 import L from 'leaflet';
 import './styles.css';
 
-const createIcon = (petshop) => {
+const createIcon = (petshop, isSelected) => {
+
   return L.divIcon({
-    className: 'custom-marker-icon',
+    className: `custom-marker-icon ${isSelected ? 'selected' : ''}`,
     html: `
-      <div class="marker-icon">
+      <div class="marker-icon ${isSelected ? 'selected' : ''}">
         <img src="${petshop.logo}"
              alt="Logo"
              class="img-marker"
@@ -20,10 +22,13 @@ const createIcon = (petshop) => {
 };
 
 const Marker = ({ petshop, lat, lng }) => {
+  const selectedPetshop = useSelector(state => state.shop.petshopMapSelected);
+  const isSelected = selectedPetshop?.id === petshop.id;
+
   return (
-    <LeafletMarker position={[lat, lng]} icon={createIcon(petshop)}>
+    <LeafletMarker position={[lat, lng]} icon={createIcon(petshop, isSelected)}>
       <Popup>
-        <span>{petshop.nome}</span>
+        <span>{petshop.name}</span>
       </Popup>
     </LeafletMarker>
   );

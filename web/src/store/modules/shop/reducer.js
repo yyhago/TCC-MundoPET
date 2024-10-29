@@ -3,21 +3,37 @@ import types from "./types";
 
 const INITIAL_STATE = {
     customer: {},
-    petshops: []
-}
+    petshops: [],
+    petshopMapSelected: null,
+    mapCenter: {
+        lat: -22.8722787, 
+        lng: -47.2102212 
+    }
+};
 
-function shop (state = INITIAL_STATE, action){
-    
-    switch(action.type){
+function shop(state = INITIAL_STATE, action) {
+    switch(action.type) {
         case types.SET_CUSTOMER: {
             return produce(state, (draft) => {
                 draft.customer = action.customer;
             });
         }
 
-        case types.SET_PETSHOPS:{
+        case types.SET_PETSHOPS: {
             return produce(state, (draft) => {
                 draft.petshops = action.petshops;
+            });
+        }
+
+        case types.SET_PETSHOP_MAP_SELECTED: {
+            return produce(state, (draft) => {
+                draft.petshopMapSelected = action.petshop;
+            });
+        }
+
+        case types.SET_MAP_CENTER: {
+            return produce(state, (draft) => {
+                draft.mapCenter = action.location;
             });
         }
 
@@ -25,6 +41,5 @@ function shop (state = INITIAL_STATE, action){
             return state;
     }
 }
-
 
 export default shop;
