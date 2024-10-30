@@ -1,54 +1,63 @@
-import Header from "../../components/header/header"
-import Product from "../../components/product/card";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import Header from "../../components/header/header";
+import Product from "../../components/product/card"; // Verifique se o caminho está correto
 import Icon from '@mdi/react';
-
-import { mdiStar } from '@mdi/js';
-import { mdiCash } from '@mdi/js';
-import { mdiGoogleMaps } from '@mdi/js';
-
-import './styles.css'
-
+import { mdiStar, mdiCash, mdiGoogleMaps } from '@mdi/js';
+import { requestPetshop } from '../../store/modules/shop/actions'; 
+import './styles.css';
 
 const PetShop = () => {
-  return(
+  const dispatch = useDispatch();
+  const { id } = useParams(); 
+  const petshop = useSelector(state => state.shop.petshop); 
+
+  useEffect(() => {
+    dispatch(requestPetshop(id)); 
+  }, [dispatch, id]);
+
+  console.log(petshop); // Verifique os dados do petshop
+
+  return (
     <div className="h-100">
       <Header />
-
       <div className="container">
         <div className="row">
           <div className="col-2">
-            <img src="https://marketplace.canva.com/EAGEl51-V8U/1/0/1600w/canva-logotipo-para-petshop-para-pequenos-animais-silhueta-azul-e-branco-0p_KpsHDZl0.jpg" alt="Logo" className="img-fluid petshop-image" />
-            <b>PetShop!</b>
+            <img 
+              src={petshop.logo} 
+              alt="Logo" 
+              className="img-fluid petshop-image" 
+            />
+            <b>{petshop.nome}</b>
 
             <div className="petshop-infos">
               <Icon path={mdiStar} size={1} className="petshop-icon star-icon" />
-              <text><b>3,2</b></text>
+              <text><b>{petshop.destaque}</b></text>
 
               <Icon path={mdiCash} size={1} className="petshop-icon cash-icon" />
-              <text><b>$$$</b></text>
+              <text><b>{petshop.categoria}</b></text>
 
               <Icon path={mdiGoogleMaps} size={1} className="petshop-icon google-maps-icon" />
-              <text><b>3.9KM</b></text>
+              <text><b>{petshop.location?.lat}, {petshop.location?.lng}</b></text>
             </div>
 
             <label className="badge badge-primary">Frete Grátis</label>
-
           </div>
           <div className="col-10">
             <h5>Produtos: </h5>
-            <br/>
+            <br />
             <div className="row">
-              {[1,2,3,4,5,6,7,8,9].map((p) => (
-                <Product />
+              {petshop.products?.map(product => (
+                <Product key={product._id} product={product} />
               ))}
             </div>
           </div>
         </div>
       </div>
-
     </div>
-  )
+  );
 }
 
-
-export default PetShop
+export default PetShop;

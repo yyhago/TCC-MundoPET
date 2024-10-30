@@ -1,7 +1,7 @@
 import { takeLatest, all, call, put } from 'redux-saga/effects';
 import types from './types';
 import api from '../../../services/api';
-import { setPetshops } from './actions';
+import { setPetshops, setPetshop } from './actions';
 
 export function* requestPetshops() {
     try {
@@ -15,4 +15,21 @@ export function* requestPetshops() {
     }
 }
 
-export default all([takeLatest(types.REQUEST_PETSHOPS, requestPetshops)]);
+export function* requestPetshop({ id }) {
+    try {
+        const response = yield call(api.get, `/petshops/${id}`);
+        
+        
+        const petshop = response.data?.petshop || {};
+        
+        yield put(setPetshop(petshop));
+    } catch (error) {
+        console.error('Erro ao buscar petshop:', error);
+    }
+}
+
+
+export default all([
+    takeLatest(types.REQUEST_PETSHOPS, requestPetshops),
+    takeLatest(types.REQUEST_PETSHOP, requestPetshop)
+]);

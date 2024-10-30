@@ -24,3 +24,13 @@ export const setSelectedPetshop = (petshop) => {
 export const setMapCenter = (location) => {
     return { type: types.SET_MAP_CENTER, location };
 };
+
+// Ação para solicitar petshop no plural
+export const requestPetshop = (id) => {
+    return { type: types.REQUEST_PETSHOP, id };
+};
+
+// Ação para solicitar petshop no plural
+export const setPetshop = (petshop) => {
+    return { type: types.SET_PETSHOP, petshop };
+};
