@@ -25,12 +25,16 @@ export const setMapCenter = (location) => {
     return { type: types.SET_MAP_CENTER, location };
 };
 
-// Ação para solicitar petshop no plural
+// Ação para solicitar a request do petshop no plural
 export const requestPetshop = (id) => {
     return { type: types.REQUEST_PETSHOP, id };
 };
 
-// Ação para solicitar petshop no plural
+// Ação para solicitar petshop com tudo no plural
 export const setPetshop = (petshop) => {
     return { type: types.SET_PETSHOP, petshop };
 };
+
+export const toogleCartProduct = (product) => {
+    return { type: types.TOGGLE_CART_PRODUCT, product }
+}

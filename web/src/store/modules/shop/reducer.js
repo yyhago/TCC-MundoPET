@@ -9,7 +9,8 @@ const INITIAL_STATE = {
     mapCenter: {
         lat: -22.8722787, 
         lng: -47.2102212 
-    }
+    },
+    cart: [],
 };
 
 function shop(state = INITIAL_STATE, action) {
@@ -42,6 +43,19 @@ function shop(state = INITIAL_STATE, action) {
             return produce(state, (draft) => {
                 draft.petshop = action.petshop;
             });
+        }
+
+        case types.TOGGLE_CART_PRODUCT:{
+            return produce(state, (draft) => {
+                const index = draft.cart.findIndex((p) => p._id === action.product._id)
+            
+                if(index !== -1){
+                    draft.cart.splice(index, 1);
+                } else{
+                    draft.cart.push(action.product)
+                }
+                
+            }); 
         }
 
         default:

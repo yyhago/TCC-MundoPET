@@ -1,26 +1,47 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { toogleCartProduct } from '../../../store/modules/shop/actions';
 import './styles.css';
 
-const Product = () => {
+const Product = ({ product }) => {
+  const dispatch = useDispatch();
+  const { cart } = useSelector(state => state.shop);
+  const added = cart.findIndex((p) => p._id === product._id) !== -1;
+
+  if (!product) {
+    return null;
+  }
+
   return (
-    <div className="product-list col-12">
+    <div className="product-list">
       <div className="row align-items-center">
         <div className="col-3">
           <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBF3owPBqkXAh48S4pipHbfQDe8Ead43_4sQ&s"
-            alt="produto"
-            className="img-fluid"
+            src={product.capa}
+            alt={product.nome}
           />
         </div>
         <div className="col-6">
           <h6>
-            <label className="badge badge-primary">R$ 30,00</label>
+            <label className="badge badge-primary">
+              R$ {product.preco.toFixed(2)}
+            </label>
           </h6>
           <small>
-            <b>Ração Premier Formula Cães Adultos Raças Médias Frango - 15 kg</b>
+            <b>{product.nome}</b>
           </small>
+          {product.avaliacoes && (
+            <small className="text-muted">
+              ★ {product.avaliacoes.toFixed(1)}
+            </small>
+          )}
         </div>
         <div className="col-3 text-right">
-          <button className="btn btn-secondary rounded-circle">-</button>
+          <button 
+            onClick={() => dispatch(toogleCartProduct(product))}
+            className={`btn btn-${added ? 'secondary' : 'primary'} rounded-circle`}
+          >
+            {added ? '-' : '+'}
+          </button>
         </div>
       </div>
     </div>
