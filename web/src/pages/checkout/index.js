@@ -1,4 +1,6 @@
 import dayjs from 'dayjs';
+import _, { result } from 'underscore';
+
 import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 
@@ -7,7 +9,7 @@ import Product from '../../components/product/list';
 import './styles.css';
 
 const Checkout = () => {
-  const { cart } = useSelector(state => state.shop);
+  const { cart, transactionFee, defaultRecipient } = useSelector(state => state.shop);
 
   const [transaction, setTransaction] = useState({
     amount: 0,
@@ -66,8 +68,56 @@ const Checkout = () => {
         quantity: 1,
         tangible: true,
       })),
+      split_rules: getSplitRules()
     }));
   }, [cart]);
+
+
+  const getSplitRules = () => {
+    // Agrupa os produtos por petshop
+    const productsByPetshop = _.groupBy(cart, (product) => product.petshop_id.recipient_id || 'undefined');
+  
+    // Define o total geral da compra
+    const total = cart.reduce((total, product) => total + parseFloat(product.preco), 0);
+
+    const splitRules = Object.keys(productsByPetshop)
+      .filter(petshop_id => petshop_id !== 'undefined') // Filtra os petshops válidos
+      .map((petshop_id) => {
+        const products = productsByPetshop[petshop_id];
+        // Calcula o valor total de produtos de um petshop
+        const totalValueByPetshop = products.reduce((total, product) => total + parseFloat(product.preco), 0);
+
+        // Calcula a taxa de transação para o petshop
+        const totalFee = totalValueByPetshop * transactionFee;
+
+        // Calcula a porcentagem que o petshop vai receber (subtraindo a taxa de transação)
+        const percentage = Math.floor(((totalValueByPetshop - totalFee) / total) * 100);
+
+        return {
+          recipient_id: products[0].petshop_id.recipient_id, // Usa o primeiro produto para pegar o recipient_id
+          percentage: percentage, // A porcentagem calculada para este petshop
+          liable: true, 
+          charge_processing_fee: true,
+        };
+      });
+
+    // Calcula o total das porcentagens dos petshops
+    const totalPetshopsPercentage = splitRules.reduce((total, recipient) => {
+        return total + recipient.percentage;
+    }, 0);
+
+    // Adiciona o recebedor padrão (defaultRecipient) com a porcentagem restante
+    splitRules.push({
+        ...defaultRecipient,
+        percentage: 100 - totalPetshopsPercentage, // O restante da porcentagem
+        charge_processing_fee: true,
+    });
+
+    return splitRules;
+  };
+
+
+
 
   return (
     <div className="h-100">

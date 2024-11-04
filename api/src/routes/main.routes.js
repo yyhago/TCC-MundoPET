@@ -28,8 +28,8 @@ router.get("/petshops/:id", async (req, res) => {
 
     const products = await Product.find({
       petshop_id: petshop._id,
-    });
-
+    }).populate('petshop_id', 'recipient_id');
+    
     res.json({
       error: false,
       petshop: {
