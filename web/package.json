@@ -11,6 +11,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.7",
+    "dayjs": "^1.11.13",
     "immer": "^10.1.1",
     "leaflet": "^1.9.4",
     "react": "^18.2.0",
