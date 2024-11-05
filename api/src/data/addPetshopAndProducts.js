@@ -14,7 +14,7 @@ const addPetshopAndProducts = async () => {
                 
 
                 const recipient = await createRecipient(
-                    'sb-5nw6n26611614@business.example.com', // Email business do sandbox
+                    petshop.email,
                     petshop.nome
                 );
 

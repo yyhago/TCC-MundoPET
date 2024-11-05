@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-require('dotenv').config(); 
-const URI = process.env.MONGODB_URI; 
+
+const URI = 'mongodb+srv://yyhago:Tele9815@mundopettcc.bxuhl.mongodb.net/?retryWrites=true&w=majority&appName=mundopetTCC';
 console.log('URI:', URI);
 
 mongoose.set('debug', true);

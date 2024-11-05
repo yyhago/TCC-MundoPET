@@ -49,12 +49,12 @@ const createRecipient = async (receiverEmail, businessName) => {
                 sender_batch_header: {
                     sender_batch_id: `Batch_${Date.now()}_${businessName.replace(/\s+/g, '')}`,
                     email_subject: "Cadastro realizado com sucesso!",
-                    email_message: `Bem-vindo ao MundoPet! Seu cadastro para ${businessName} foi realizado com sucesso.`
+                    email_message: `Bem-vindo ao MundoPet! Seu cadastro como empresa para ${businessName} foi realizado com sucesso.`
                 },
                 items: [{
                     recipient_type: "EMAIL",
                     amount: {
-                        value: "50.00",
+                        value: "20.00",
                         currency: "BRL"
                     },
                     note: `Registro para: ${businessName}`,

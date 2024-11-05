@@ -3,14 +3,29 @@ const { createSplitTransaction } = require('./paypal');
 // Array de pagamentos (recipients)
 const payments = [
     {
-        recipientEmail: 'sb-owwkz26611905@business.example.com',
+        recipientEmail: 'sb-zo4347633134668@business.example.com',
         recipientName: 'Petshop A',
-        amount: '100.00'
+        amount: '20.00'
+    },
+    {
+        recipientEmail: 'sb-tkbyr33134658@business.example.com',
+        recipientName: 'Petshop B',
+        amount: '150.00'
+    },
+    {
+        recipientEmail: 'sb-jqm5a33134649@business.example.com',
+        recipientName: 'Petshop C',
+        amount: '10.00'
+    },
+    {
+        recipientEmail: 'sb-owwkz26611905@business.example.com',
+        recipientName: 'Petshop D',
+        amount: '120.00'
     },
     {
         recipientEmail: 'sb-5nw6n26611614@business.example.com',
-        recipientName: 'Petshop B',
-        amount: '150.00'
+        recipientName: 'Petshop E',
+        amount: '90.00'
     }
 ];
 

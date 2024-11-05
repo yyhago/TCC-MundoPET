@@ -13,7 +13,7 @@ const INITIAL_STATE = {
     cart: [],
     transactionFee: 0.1,
     defaultRecipient: {
-        recipient_id: 'D8VKNL45TGFDE',
+        recipient_id: 'sb-ip3eo33367221@business.example.com',
         percentage: 10,
         liable: true, 
     }

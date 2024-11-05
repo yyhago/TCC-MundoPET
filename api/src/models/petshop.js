@@ -10,7 +10,8 @@ const PetshopSchema = new mongoose.Schema({
     lat: { type: Number, required: true },
     lng: { type: Number, required: true }  
   },
-  recipient_id: { type: String }
+  recipient_id: { type: String },
+  email: { type: String, required: true }
 });
 
 // Cria o modelo Petshop com o esquema definido
