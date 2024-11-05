@@ -35,6 +35,10 @@ export const setPetshop = (petshop) => {
     return { type: types.SET_PETSHOP, petshop };
 };
 
-export const toogleCartProduct = (product) => {
+export const toggleCartProduct = (product) => {
     return { type: types.TOGGLE_CART_PRODUCT, product }
+}
+
+export const setTransaction = (transaction) => {
+    return { type: types.SET_TRANSACTION, transaction }
 }

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { toogleCartProduct } from '../../../store/modules/shop/actions';
+import { toggleCartProduct } from '../../../store/modules/shop/actions';
 import './styles.css';
 
 const Product = ({ product }) => {
@@ -37,7 +37,7 @@ const Product = ({ product }) => {
         </div>
         <div className="col-3 text-right">
           <button 
-            onClick={() => dispatch(toogleCartProduct(product))}
+            onClick={() => dispatch(toggleCartProduct(product))}
             className={`btn btn-${added ? 'secondary' : 'primary'} rounded-circle`}
           >
             {added ? '-' : '+'}

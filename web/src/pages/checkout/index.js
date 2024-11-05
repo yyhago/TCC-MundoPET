@@ -1,14 +1,17 @@
 import dayjs from 'dayjs';
 import _, { result } from 'underscore';
 
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 
+import { setTransaction as setStoreTransaction } from '../../store/modules/shop/actions';
 import Header from '../../components/header/header';
 import Product from '../../components/product/list';
 import './styles.css';
 
 const Checkout = () => {
+
+  const dispatch = useDispatch();
   const { cart, transactionFee, defaultRecipient } = useSelector(state => state.shop);
 
   const [transaction, setTransaction] = useState({
@@ -50,7 +53,7 @@ const Checkout = () => {
   };
 
   const makePurchase = () => {
-    console.log(transaction);
+    dispatch(setStoreTransaction(transaction))
   };
 
   const total = cart.reduce((total, product) => {

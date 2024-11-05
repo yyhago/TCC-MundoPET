@@ -2,7 +2,6 @@ import { produce } from "immer";
 import types from "./types";
 
 const INITIAL_STATE = {
-    customer: {},
     petshops: [],
     petshop: {},
     petshopMapSelected: null,
@@ -16,6 +15,29 @@ const INITIAL_STATE = {
         recipient_id: 'sb-ip3eo33367221@business.example.com',
         percentage: 10,
         liable: true, 
+    },
+    transaction: {
+        amount: 0,
+        card_number: '',
+        card_cvv: '',
+        card_expiration_date: '',
+        card_holder_name: '',
+        customer: {},
+        billing:{
+            name: 'MundoPet LTDA',
+            address: {
+                country: 'br',
+                state: 'sp',
+                city: 'Hortolândia',
+                neighborhood: 'Campinas',
+                street: 'Rua Matrix',
+                street_number: '13185512',
+                zipcode: '12',
+            },
+        },
+        shipping: {},
+        items: [],
+        split_rules: []
     }
 };
 
@@ -23,7 +45,7 @@ function shop(state = INITIAL_STATE, action) {
     switch(action.type) {
         case types.SET_CUSTOMER: {
             return produce(state, (draft) => {
-                draft.customer = action.customer;
+                draft.transaction.customer = action.customer;
             });
         }
 
@@ -51,17 +73,21 @@ function shop(state = INITIAL_STATE, action) {
             });
         }
 
-        case types.TOGGLE_CART_PRODUCT:{
+        case types.TOGGLE_CART_PRODUCT: {
             return produce(state, (draft) => {
-                const index = draft.cart.findIndex((p) => p._id === action.product._id)
-            
-                if(index !== -1){
-                    draft.cart.splice(index, 1);
-                } else{
-                    draft.cart.push(action.product)
+                const index = draft.cart.findIndex((p) => p._id === action.product._id);
+                if (index !== -1) {
+                    draft.cart = draft.cart.filter((_, i) => i !== index);
+                } else {
+                    draft.cart.push(action.product);
                 }
-                
-            }); 
+            });
+        }
+
+        case types.SET_TRANSACTION: {
+            return produce(state, (draft) => {
+                draft.transaction = { ...draft.transaction, ...action.transaction }
+            });
         }
 
         default:

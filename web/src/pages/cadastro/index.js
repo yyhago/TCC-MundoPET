@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setCustomer } from '../../store/modules/shop/actions';
-
+import { Link } from 'react-router-dom';
 
 import Header from '../../components/header/header';
 import Illustration from '../../assets/illustration.png';
@@ -76,9 +76,9 @@ const Cadastro = () => {
                 className="form-control form-control-lg mb-3"
                 onChange={(e) => setCustomerState({ ...customer, birthday: e.target.value })}
               />
-              <button onClick={GoToCheckout} className="btn btn-lg btn-block btn-secondary w-100">
+              <Link to="/checkout" onClick={GoToCheckout} className="btn btn-lg btn-block btn-secondary w-100">
                 Finalizar Pedido
-              </button>
+              </Link>
             </div>
           </div>
         </div>
