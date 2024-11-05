@@ -1,14 +1,20 @@
 const mongoose = require('mongoose');
-const URI = 'mongodb+srv://yyhago:Tele9815@mundopettcc.bxuhl.mongodb.net/?retryWrites=true&w=majority&appName=mundopetTCC';
+require('dotenv').config(); 
+const URI = process.env.MONGODB_URI; 
+console.log('URI:', URI);
 
 mongoose.set('debug', true);
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(URI);
+    await mongoose.connect(URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
     console.log('Conectado ao DB - MongoDB Atlas');
   } catch (err) {
     console.error(err);
   }
 };
+
 connectDB();
