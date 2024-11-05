@@ -3,17 +3,16 @@ const app = express();
 const cors = require('cors');
 const morgan = require('morgan');
 
-//database
-require('./database')
+// database
+require('./database');
 
 app.set('port', process.env.PORT || 8000);
 app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
 
-app.use('/', require('./routes/main.routes'))
-
+app.use('/', require('./routes/main.routes'));
 
 app.listen(app.get('port'), () => {
-  console.log('Servidor rodando.');
-})
+  console.log(`Servidor rodando na porta ${app.get('port')}`);
+});

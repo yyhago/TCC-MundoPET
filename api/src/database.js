@@ -7,10 +7,7 @@ mongoose.set('debug', true);
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(URI);
     console.log('Conectado ao DB - MongoDB Atlas');
   } catch (err) {
     console.error(err);
