@@ -29,11 +29,21 @@ const payments = [
     }
 ];
 
-
-createSplitTransaction(payments).then(result => {
-    if (result.error) {
-        console.error('Erro na transação:', result.message);
-    } else {
-        console.log('Transação completa:', result.data);
-    }
-});
+// Executando a transação dividida
+createSplitTransaction(payments)
+    .then(result => {
+        if (result.error) {
+            console.error('Erro na transação:', result.message);
+        } else {
+            console.log('Transação completa:', result.data);
+            return getPayoutStatus(result.data.batch_id);
+        }
+    })
+    .then(statusResult => {
+        if (statusResult && !statusResult.error) {
+            console.log('Status do payout:', statusResult.data);
+        }
+    })
+    .catch(err => {
+        console.error('Erro ao processar a transação:', err);
+    });
