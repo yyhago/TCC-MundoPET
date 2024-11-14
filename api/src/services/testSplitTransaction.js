@@ -1,4 +1,4 @@
-const { createSplitTransaction } = require('./paypal');
+const { createSplitTransaction, getPayoutStatus } = require('./paypal');
 
 // Array de pagamentos (recipients)
 const payments = [
