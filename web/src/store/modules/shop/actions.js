@@ -42,3 +42,7 @@ export const toggleCartProduct = (product) => {
 export const setTransaction = (transaction) => {
     return { type: types.SET_TRANSACTION, transaction }
 }
+
+export const makePruchase = () => {
+    return { type: types.MAKE_PURCHASE,  }
+}

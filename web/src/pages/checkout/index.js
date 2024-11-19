@@ -4,7 +4,7 @@ import _ from 'underscore';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect, useCallback } from 'react';
 
-import { setTransaction as setStoreTransaction } from '../../store/modules/shop/actions';
+import { setTransaction as setStoreTransaction, makePruchase } from '../../store/modules/shop/actions';
 import Header from '../../components/header/header';
 import Product from '../../components/product/list';
 import './styles.css';
@@ -107,6 +107,9 @@ const Checkout = () => {
 
   const makePurchase = () => {
     dispatch(setStoreTransaction(transaction));
+    setTimeout(() => {
+      dispatch(makePruchase())
+    },100)
   };
 
   return (
@@ -200,8 +203,8 @@ const Checkout = () => {
               <div className="col-6">
                 <input
                   onChange={(e) => setTransaction((prevTransaction) => ({ ...prevTransaction, card_expiration_date: e.target.value }))}
-                  type="date"
-                  placeholder="dd/mm/aaaa"
+                  type="texte"
+                  placeholder="Validade"
                   className="form-control form-control-lg"
                 />
               </div>

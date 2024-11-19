@@ -1,3 +1,5 @@
+const axios = require('axios');
+
 const express = require("express");
 const router = express.Router();
 
@@ -47,16 +49,59 @@ router.get("/petshops/:id", async (req, res) => {
 
 router.post("/purchase", async (req, res) => {
   try {
-    if (!Array.isArray(req.body)) {
-      return res.status(400).json({ error: true, message: "O corpo da requisição deve ser um array de pagamentos." });
+    let payments;
+    const petshopsMap = {};
+
+    // Busque os petshops e crie um mapeamento de recipient_id para email
+    const petshopsResponse = await axios.get("http://localhost:8000/petshops");
+    const petshops = petshopsResponse.data.petshops;
+
+    petshops.forEach((petshop) => {
+      petshopsMap[petshop.recipient_id] = petshop.email;
+    });
+
+    // Verificar o formato do payload
+    if (Array.isArray(req.body)) {
+      // Payload direto no formato de pagamentos
+      payments = req.body;
+
+      // Validação básica
+      if (!payments.length || !payments[0]?.recipientEmail || !payments[0]?.amount) {
+        throw new Error("Payload inválido: Certifique-se de enviar um array de pagamentos com recipientEmail e amount.");
+      }
+    } else {
+      // Payload no formato { items, split_rules }
+      const { items, split_rules } = req.body;
+
+      if (!items || !split_rules) {
+        throw new Error("Payload inválido: Certifique-se de enviar 'items' e 'split_rules'.");
+      }
+
+      // Criar os pagamentos
+      payments = split_rules.map((rule) => {
+        const amount = (parseFloat(items[0].unit_price) * (rule.percentage / 100)).toFixed(2);
+
+        // Obter o email correspondente ao recipient_id
+        const recipientEmail = petshopsMap[rule.recipient_id] || rule.recipient_id;
+
+        return {
+          recipientEmail, // Email do petshop ou taxa administrativa
+          recipientName: recipientEmail.includes("example.com")
+            ? "MundoPet Admin"
+            : "Petshop Partner",
+          amount: amount,
+        };
+      });
     }
 
-    const transaction = await createSplitTransaction(req.body);
+    // Enviar os pagamentos para o PayPal
+    const transaction = await createSplitTransaction(payments);
     res.json(transaction);
   } catch (error) {
     res.status(500).json({ error: true, message: error.message });
   }
 });
+
 
 
 /***

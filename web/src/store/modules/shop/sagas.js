@@ -1,7 +1,9 @@
-import { takeLatest, all, call, put } from 'redux-saga/effects';
+import { takeLatest, all, call, put, select } from 'redux-saga/effects';
+import { setPetshops, setPetshop } from './actions';
 import types from './types';
 import api from '../../../services/api';
-import { setPetshops, setPetshop } from './actions';
+import Swal from 'sweetalert2'
+
 
 export function* requestPetshops() {
     try {
@@ -28,8 +30,53 @@ export function* requestPetshop({ id }) {
     }
 }
 
+// Modificação no saga makePurchase
+export function* makePurchase() {
+    try {
+      const { transaction } = yield select(state => state.shop);
+      
+      // Validar se há items no carrinho
+      if (!transaction.items || transaction.items.length === 0) {
+        throw new Error('Carrinho vazio');
+      }
+  
+      // Validar se há regras de split
+      if (!transaction.split_rules || transaction.split_rules.length === 0) {
+        throw new Error('Regras de divisão não definidas');
+      }
+  
+      const response = yield call(api.post, '/purchase', transaction);
+      const res = response.data;
+  
+      if (res.error) {
+        yield call(Swal.fire, {
+          icon: 'error',
+          title: 'Oops...',
+          text: res.message
+        });
+        return false;
+      }
+  
+      yield call(Swal.fire, {
+        icon: 'success',
+        title: 'Tudo ok!',
+        text: 'Compra realizada com sucesso!'
+      });
+  
+      return true;
+    } catch (error) {
+      yield call(Swal.fire, {
+        icon: 'error',
+        title: 'Erro na compra',
+        text: error.message || 'Ocorreu um erro ao processar sua compra'
+      });
+      return false;
+    }
+  }
+
 
 export default all([
     takeLatest(types.REQUEST_PETSHOPS, requestPetshops),
-    takeLatest(types.REQUEST_PETSHOP, requestPetshop)
+    takeLatest(types.REQUEST_PETSHOP, requestPetshop),
+    takeLatest(types.MAKE_PURCHASE, makePurchase)
 ]);
