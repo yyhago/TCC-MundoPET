@@ -21,7 +21,7 @@ const Home = () => {
       <Header /> {/* Chamo meu componente Header */}
       <div className="container-fluid petshop-list-container">
         <div className="col-12 px-4 text-center">
-          <h5>Mais próximos de você (7)</h5>
+          <h5>Mais próximos de você (5)</h5>
         </div>
         <ul className="col-12 petshop-list">
           {petshops.map(p => <PetShop petshop={p} key={p} />)}

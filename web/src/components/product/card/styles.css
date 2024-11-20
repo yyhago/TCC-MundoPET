@@ -1,36 +1,85 @@
+/* Layout Responsivo */
 .product {
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   position: relative;
+  transition: transform 0.3s ease-in-out;
 }
 
+.product:hover {
+  transform: translateY(-10px); /* Efeito de elevação ao passar o mouse */
+}
+
+/* Estilo da Imagem do Produto */
 .product-image-container {
   position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  height: 200px; /* Altura fixa para o contêiner da imagem */
 }
 
-.product img {
-  border: 1px solid #D5D5D5;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  padding: 20px;
-  max-height: 210px;
+.product img.product-image {
   width: 100%;
+  height: 100%; /* Garantir que a imagem ocupe toda a altura do contêiner */
+  object-fit: cover; /* Faz a imagem preencher o contêiner sem distorcer */
+  transition: transform 0.3s ease-in-out;
 }
 
-.product .badge {
-  margin-bottom: 0;
+.product img.product-image:hover {
+  transform: scale(1.05); /* Zoom na imagem ao passar o mouse */
 }
 
-.product small {
-  margin-top: 0;
-  line-height: 15px;
-  display: block;
-}
-
-.product button {
+/* Estilo do Botão de Adicionar/Remover do Carrinho */
+.add-to-cart-btn {
   position: absolute;
-  right: 5px;
-  bottom: 15px;
-  font-size: 27px;
-  padding: 1px 12px;
+  right: 10px;
+  bottom: 10px;
+  font-size: 30px;
+  padding: 8px;
+  background-color: #ff7f50; /* Cor mais visível para o botão */
+  color: white;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
+.add-to-cart-btn:hover {
+  background-color: #ff4500; /* Cor de fundo mais intensa no hover */
+  transform: scale(1.1); /* Aumenta o botão levemente */
+}
+
+/* Estilo do Preço */
+.price-tag {
+  font-size: 1.25rem;
+  font-weight: bold;
+  background-color: #007bff;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 50px;
+}
+
+/* Nome do Produto */
+.product-name {
+  margin-top: 5px;
+  font-size: 1rem;
+  text-align: center;
+  color: #333;
+}
+
+/* Responsividade: Ajuste para tamanhos de tela menores */
+@media (max-width: 767px) {
+  .product {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .product {
+    margin-bottom: 15px;
+  }
+}
+
+@media (min-width: 992px) {
+  .product {
+    margin-bottom: 40px;
+  }
+}

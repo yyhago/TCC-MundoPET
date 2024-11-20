@@ -51,14 +51,13 @@ input[type='date']:disabled{
   --colorYellow: 242, 183, 5;
 }
 
-
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html,body{
+html, body {
   height: 100%;
   font-family: "Poppins", sans-serif;
   letter-spacing: -0.03em;
@@ -68,19 +67,19 @@ html,body{
   background-color: rgb(var(--primary)) !important;
 }
 
-.box{
+.box {
   display: flex;
   flex-wrap: wrap;
   background-color: #fff;
   box-shadow: 0px 0px 11px 6px rgba(0, 0, 0, 0.08);
   border-radius: 12px;
   padding: 50px;
+  width: 100%; 
 }
 
 .imgIllustration {
   margin-left: 0;
 }
-
 
 .glass-effect {
   background: rgba(255, 255, 255, 0.3);
@@ -94,36 +93,34 @@ html,body{
   display: inline-block;
 }
 
-.ContentBox{
+.ContentBox {
   display: flex;
   padding-top: 5%;
   padding-bottom: 5%;
 }
 
-.footerCadastro{
+.footerCadastro {
   text-align: center;
   background-color: rgb(var(--primary));
   padding: 10px;
   color: rgb(0, 0, 0);
 }
 
-.badge{
+.badge {
   font-weight: 400;
   background: rgba(var(--primary), 0.2);
   color: rgb(var(--primary));
 }
 
-.badge .badge-primary{
+.badge .badge-primary {
   background: rgba(var(--primary), 0.1);
   color: rgb(var(--primary));
 }
 
-.badge .badge-secondary{
+.badge .badge-secondary {
   background: rgba(var(--sebPrimary), 0.1);
   color: rgb(var(--sebPrimary));
 }
-
-
 
 @media (max-width: 1200px) {
   .box {
@@ -158,6 +155,7 @@ html,body{
 
   .col-6, .col-lg-6, .col-md-8, .col-12 {
     text-align: center;
+    width: 100%;
   }
 }
 

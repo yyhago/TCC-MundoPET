@@ -18,3 +18,21 @@
 .star-icon{
   color: #facd5d;
 }
+
+/* Estilo geral para a coluna de informações do petshop */
+.col-2 {
+  flex: 0 0 auto;
+  width: 16.66666667%; /* Largura padrão em telas grandes */
+}
+
+/* Responsividade para telas pequenas (máximo de 768px) */
+@media (max-width: 768px) {
+  .col-2 {
+    display: none; /* Esconde a coluna de informações do petshop em telas pequenas */
+  }
+
+  /* Aumenta a largura da coluna que ocupa o restante da página para 100% */
+  .col-10 {
+    width: 100%; /* Faz com que a coluna ocupe toda a largura disponível */
+  }
+}

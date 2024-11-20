@@ -14,15 +14,18 @@ const Product = ({ product }) => {
   return (
     <div className="product-list">
       <div className="row align-items-center">
-        <div className="col-3">
-          <img
-            src={product.capa}
-            alt={product.nome}
-          />
+        <div className="col-12 col-sm-4">
+          <div className="product-image-container">
+            <img
+              src={product.capa}
+              alt={product.nome}
+              className="img-fluid"
+            />
+          </div>
         </div>
-        <div className="col-6">
+        <div className="col-12 col-sm-6">
           <h6>
-            <label className="badge badge-primary">
+            <label className="badge badge-primary price-badge">
               R$ {product.preco.toFixed(2)}
             </label>
           </h6>
@@ -35,10 +38,10 @@ const Product = ({ product }) => {
             </small>
           )}
         </div>
-        <div className="col-3 text-right">
+        <div className="col-12 col-sm-2 text-center text-sm-right">
           <button 
             onClick={() => dispatch(toggleCartProduct(product))}
-            className={`btn btn-${added ? 'secondary' : 'primary'} rounded-circle`}
+            className={`btn btn-${added ? 'secondary' : 'primary'} rounded-circle cart-btn`}
           >
             {added ? '-' : '+'}
           </button>

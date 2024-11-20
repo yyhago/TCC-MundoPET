@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 import { setCustomer } from '../../store/modules/shop/actions';
 import { Link } from 'react-router-dom';
 
+import './styles.css'
+
 import Header from '../../components/header/header';
 import Illustration from '../../assets/illustration.png';
 
@@ -31,7 +33,7 @@ const Cadastro = () => {
   return (
     <div className="d-flex flex-column h-100">
       <div className="container-fluid flex-grow-1 bg-primary d-flex flex-column">
-        <Header logoVersion hideCart /> {/* Componente Header */}
+        <Header hideCart /> {/* Componente Header */}
         <div className="row flex-grow-1 ContentBox justify-content-center">
           <div className="col-lg-6 d-none d-lg-flex text-center my-auto"> {/* Ilustração */}
             <div className="glass-effect">

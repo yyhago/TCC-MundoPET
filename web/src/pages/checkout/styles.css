@@ -1,11 +1,97 @@
-.section-title{
+/* Estilo geral */
+.section-title {
   border-bottom: 3px solid rgb(var(--primary));
   padding-bottom: 7px;
   margin: 20px 0;
   display: inline-block;
+  font-size: 1.2rem;
 }
 
-.box-sidebar{
+.box-sidebar {
   max-height: 500px;
   overflow-y: auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Inputs */
+.form-control-lg {
+  font-size: 1rem;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  margin-bottom: 15px;
+  transition: border-color 0.3s;
+}
+
+.form-control-lg:focus {
+  border-color: rgb(var(--primary));
+  box-shadow: 0 0 5px rgba(var(--primary), 0.5);
+}
+
+/* Botão */
+.btn-primary {
+  background-color: rgb(var(--primary));
+  color: #fff;
+  font-size: 1.1rem;
+  padding: 12px;
+  border-radius: 8px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: rgb(var(--primary-dark));
+  transform: scale(1.05);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  .section-title {
+    font-size: 1rem;
+  }
+
+  .row {
+    flex-direction: column;
+  }
+
+  .col-6 {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .box-sidebar {
+    max-height: 300px;
+    padding: 15px;
+  }
+
+  .btn-primary {
+    font-size: 1rem;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .section-title {
+    font-size: 0.9rem;
+  }
+
+  .form-control-lg {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  .btn-primary {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  .box-sidebar {
+    max-height: 250px;
+  }
 }

@@ -1,3 +1,4 @@
+/* Splash screen geral */
 .splash-screen {
   position: fixed;
   top: 0;
@@ -10,20 +11,38 @@
   align-items: center;
   z-index: 9999;
   overflow: hidden;
-  transition: opacity 1s ease-out;
+  transition: opacity 1.5s ease-out; /* Suavizando a transição */
   flex-direction: column;
 }
 
+/* Animação de fade out */
 .splash-screen.fade-out {
   opacity: 0;
+  visibility: hidden; /* Garante que o splash screen não esteja visível após a animação */
+  pointer-events: none; /* Evita interação com a tela após a transição */
 }
 
+/* Logo do Splash Screen */
 .splash-logo {
-  max-width: 60%;
+  max-width: 80%; /* Aumenta o tamanho da logo */
   height: auto;
-  margin-bottom: 20px;
+  margin-bottom: 30px; /* Mais espaço entre o logo e o loader */
+  animation: slideIn 1s ease-out forwards; /* Animação para suavizar a entrada */
 }
 
+/* Animação de slide da logo */
+@keyframes slideIn {
+  0% {
+    transform: translateY(-30px); /* A logo começa fora de vista */
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Animação do Loader */
 .splash-animation {
   position: absolute;
   bottom: 20px;
@@ -36,12 +55,24 @@
   border: 5px solid #f3f3f3;
   border-radius: 50%;
   border-top: 5px solid #ffd56b;
-  width: 50px;
-  height: 50px;
-  animation: spin 1s linear infinite;
+  width: 60px;
+  height: 60px;
+  animation: spin 1.2s linear infinite; /* Suavizando a rotação */
 }
 
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+/* Responsividade para telas pequenas */
+@media (max-width: 767px) {
+  .splash-logo {
+    max-width: 70%; /* Ajusta o tamanho da logo em telas pequenas */
+  }
+
+  .loader {
+    width: 45px; /* Reduz o tamanho do loader */
+    height: 45px;
+  }
 }

@@ -1,34 +1,31 @@
+/* Base do marcador */
 .custom-marker-icon {
   position: relative;
   display: inline-block;
 }
 
+/* Estilo do ícone do marcador */
 .marker-icon {
   width: 60px;
   height: 60px;
-  background: radial-gradient(circle at 30% 30%, #ffa500, #ff8c00);
-  border-radius: 50% 50% 50% 0;
+  background: radial-gradient(circle at 30% 30%, #ffa500, #ff8c00); /* Degradê de laranja */
+  border-radius: 50%;
   transform: rotate(-45deg);
   box-shadow: 
-    0 0 0 4px rgba(255, 165, 0, 0.3),
-    0 0 0 8px rgba(255, 165, 0, 0.2),
-    0 0 20px rgba(0, 0, 0, 0.3);
-  animation: pulse 1.5s infinite alternate;
+    0 0 0 6px rgba(255, 165, 0, 0.3),
+    0 0 0 12px rgba(255, 165, 0, 0.2),
+    0 0 15px rgba(0, 0, 0, 0.3); /* Sombra suave para dar destaque */
+  animation: pulse 1.5s ease-in-out infinite alternate; /* Animação suave */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease; /* Transição suave ao passar o mouse */
 }
 
-.marker-icon::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(45deg);
-  width: 40px;
-  height: 40px;
-  background: white;
-  border-radius: 50%;
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+/* Efeito visual ao passar o mouse ou selecionar o marcador */
+.marker-icon.selected {
+  box-shadow: 0 0 0 10px rgba(255, 165, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.4); /* Maior destaque */
+  transform: scale(1.1); /* Aumenta o marcador quando selecionado */
 }
 
+/* Efeito de zoom no ícone do logo */
 .img-marker {
   position: absolute;
   top: 50%;
@@ -39,27 +36,19 @@
   border-radius: 50%;
   object-fit: cover;
   z-index: 1;
+  transition: transform 0.3s ease; /* Transição suave no zoom do logo */
 }
 
-@keyframes pulse {
-  0% {
-    transform: rotate(-45deg) scale(1);
-  }
-  100% {
-    transform: rotate(-45deg) scale(1.1);
-  }
-}
-
-/* Opcional: Adicionar um efeito de onda */
+/* Efeito de onda no marcador */
 .marker-icon::before {
   content: '';
   position: absolute;
-  top: -5px;
-  left: -5px;
-  right: -5px;
-  bottom: -5px;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
   border: 2px solid #ffa500;
-  border-radius: 50% 50% 50% 0;
+  border-radius: 50%;
   animation: ripple 1.5s infinite;
 }
 
@@ -71,5 +60,15 @@
   100% {
     transform: rotate(-45deg) scale(1.5);
     opacity: 0;
+  }
+}
+
+/* Animação de pulsação do marcador */
+@keyframes pulse {
+  0% {
+    transform: rotate(-45deg) scale(1);
+  }
+  100% {
+    transform: rotate(-45deg) scale(1.15);
   }
 }

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Header from "../../components/header/header";
-import Product from "../../components/product/card"; // Verifique se o caminho está correto
+import Product from "../../components/product/card";
 import Icon from '@mdi/react';
 import { mdiStar, mdiCash, mdiGoogleMaps } from '@mdi/js';
 import { requestPetshop } from '../../store/modules/shop/actions'; 
@@ -17,7 +17,7 @@ const PetShop = () => {
     dispatch(requestPetshop(id)); 
   }, [dispatch, id]);
 
-  console.log(petshop); // Verifique os dados do petshop
+  console.log(petshop); 
 
   return (
     <div className="h-100">

@@ -1,26 +1,100 @@
+/* Layout e estilo geral */
 .product-list {
-  margin-top: 10px;
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
 }
 
-.product-list .badge {
-  margin-bottom: 0;
+.product-list:hover {
+  transform: translateY(-5px); /* Elevação ao passar o mouse */
+}
+
+/* Ajuste do contêiner de imagem */
+.product-image-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .product-list img {
-  border: 1px solid #dcdcdc;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease-in-out;
+}
+
+.product-list img:hover {
+  transform: scale(1.1); /* Efeito de zoom ao passar o mouse */
+}
+
+/* Estilos do preço e nome do produto */
+.price-badge {
+  font-size: 1.25rem;
+  font-weight: bold;
+  padding: 5px 15px;
+  background-color: #007bff;
+  color: white;
   border-radius: 5px;
-  padding: 10px;
-  max-width: 100%;
 }
 
 .product-list small {
-  margin-top: 0;
-  line-height: 15px;
+  margin-top: 5px;
+  line-height: 18px;
   display: block;
+  color: #555;
 }
 
-.product-list button {
-  padding: 6px 14px;
-  font-size: 20px;
-  margin-top: 10px;
+.product-list b {
+  font-size: 1.1rem;
+}
+
+/* Estilo do botão de adicionar/remover do carrinho */
+.cart-btn {
+  padding: 10px 18px;
+  font-size: 24px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cart-btn:hover {
+  transform: scale(1.1);
+  background-color: #ff7f50; /* Cor mais visível para o botão */
+}
+
+.cart-btn:focus {
+  outline: none;
+}
+
+/* Responsividade */
+@media (max-width: 767px) {
+  .product-list {
+    margin-top: 20px;
+  }
+
+  .product-list .row {
+    flex-direction: column;
+  }
+
+  .product-list .col-sm-4,
+  .product-list .col-sm-6 {
+    text-align: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .product-list {
+    margin-top: 10px;
+    padding: 8px;
+  }
+
+  .product-list .col-12 {
+    text-align: center;
+  }
+
+  .cart-btn {
+    font-size: 18px;
+  }
 }

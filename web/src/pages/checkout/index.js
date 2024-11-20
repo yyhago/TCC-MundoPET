@@ -77,15 +77,13 @@ const Checkout = () => {
         };
       });
 
-    const totalPetshopsPercentage = splitRules.reduce((total, recipient) => {
-      return total + recipient.percentage;
-    }, 0);
+      const totalPetshopsPercentage = splitRules.reduce((total, recipient) => total + recipient.percentage, 0);
 
-    splitRules.push({
-      ...defaultRecipient,
-      percentage: 100 - totalPetshopsPercentage,
-      charge_processing_fee: true,
-    });
+      splitRules.push({
+        ...defaultRecipient,
+        percentage: 100 - totalPetshopsPercentage,
+        charge_processing_fee: true,
+      });
 
     return splitRules;
   }, [cart, transactionFee, defaultRecipient]);
@@ -93,24 +91,25 @@ const Checkout = () => {
   useEffect(() => {
     setTransaction((prevTransaction) => ({
       ...prevTransaction,
-      amount: total.toFixed(2).toString().replace('.', ''),
+      amount: total,  
       items: cart.map((product) => ({
         id: product._id,
         title: product.nome,
-        unit_price: parseFloat(product.preco).toFixed(2).toString().replace('.', ''),
+        unit_price: parseFloat(product.preco), 
         quantity: 1,
         tangible: true,
       })),
       split_rules: getSplitRules(),
-    }));
+    }));    
   }, [cart, total, getSplitRules]);
 
   const makePurchase = () => {
-    dispatch(setStoreTransaction(transaction));
-    setTimeout(() => {
-      dispatch(makePruchase())
-    },100)
+    console.log("Transaction:", transaction); 
+    dispatch(setStoreTransaction(transaction));  
+    dispatch(makePruchase()); 
   };
+  
+  
 
   return (
     <div className="h-100">
@@ -203,7 +202,7 @@ const Checkout = () => {
               <div className="col-6">
                 <input
                   onChange={(e) => setTransaction((prevTransaction) => ({ ...prevTransaction, card_expiration_date: e.target.value }))}
-                  type="texte"
+                  type="text"
                   placeholder="Validade"
                   className="form-control form-control-lg"
                 />

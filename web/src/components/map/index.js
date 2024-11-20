@@ -4,7 +4,6 @@ import 'leaflet/dist/leaflet.css';
 import './styles.css';
 import Marker from '../marker';
 
-
 const ChangeMapView = ({ center }) => {
   const map = useMap();
   map.setView([center.lat, center.lng], 15);
@@ -12,9 +11,8 @@ const ChangeMapView = ({ center }) => {
 };
 
 const Map = ({ petshops }) => {
-  
   const mapCenter = useSelector(state => state.shop.mapCenter);
-  
+
   return (
     <div className="container-map">
       <MapContainer
@@ -22,6 +20,7 @@ const Map = ({ petshops }) => {
         zoom={15}
         zoomControl={false}
         style={{ height: '100%', width: '100%' }}
+        className="leaflet-map"
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

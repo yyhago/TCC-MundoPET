@@ -1,5 +1,29 @@
+
 .container-map {
   height: calc(100% - 94px);
   width: 100%;
   position: relative;
+  overflow: hidden;
+}
+
+
+.leaflet-map {
+  transition: transform 0.3s ease-in-out; 
+}
+
+
+.leaflet-marker-icon {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.leaflet-marker-icon:hover {
+  transform: scale(1.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); 
+}
+
+
+@media (max-width: 768px) {
+  .container-map {
+    height: calc(100vh - 80px); 
+  }
 }

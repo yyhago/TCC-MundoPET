@@ -10,14 +10,14 @@ const createIcon = (petshop, isSelected) => {
     html: `
       <div class="marker-icon ${isSelected ? 'selected' : ''}">
         <img src="${petshop.logo}" 
-             alt="Logo" 
+             alt="${petshop.nome} Logo" 
              class="img-marker"
         />
       </div>
     `,
-    iconSize: [32, 32],
-    iconAnchor: [21, 42],
-    popupAnchor: [0, -42],
+    iconSize: [60, 60],  
+    iconAnchor: [30, 60],  
+    popupAnchor: [0, -50],
   });
 };
 
@@ -31,7 +31,7 @@ const Marker = ({ petshop, lat, lng }) => {
         <div>
           <h6>{petshop.nome}</h6>
           <Link to={`/petshop/${petshop._id}`}>
-            <strong>ENTRAR NA LOJA!</strong>
+            <strong>VISUALIZAR PRODUTOS!</strong>
           </Link>
         </div>
       </Popup>

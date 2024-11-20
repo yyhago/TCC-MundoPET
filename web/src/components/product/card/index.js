@@ -4,7 +4,6 @@ import { toggleCartProduct } from '../../../store/modules/shop/actions';
 import './styles.css';
 
 const Product = ({ product }) => { 
-
   const dispatch = useDispatch();
   const { cart } = useSelector(state => state.shop);
   const added = cart.findIndex((p) => p._id === product._id) !== -1;
@@ -14,28 +13,28 @@ const Product = ({ product }) => {
   }
 
   return (
-    <div className="product col-3">
+    <div className="product col-12 col-sm-6 col-md-4 col-lg-3">
       <div className="product-image-container">
         <img 
           src={product.capa} 
           alt={product.nome} 
-          className="img-fluid"
+          className="img-fluid product-image"
         />
         <button 
           onClick={() => dispatch(toggleCartProduct(product))} 
-          className={`btn btn-${added ? 'secondary' : 'primary'} rounded-circle`}
+          className={`btn btn-${added ? 'secondary' : 'primary'} rounded-circle add-to-cart-btn`}
         >
           {added ? '-' : '+'}
         </button>
       </div>
       <h4>
-        <label className="badge badge-primary">{product.preco.toFixed(2)}</label>
+        <label className="badge badge-primary price-tag">{product.preco.toFixed(2)}</label>
       </h4>
-      <small>
+      <small className="product-name">
         <b>{product.nome}</b>
       </small>
     </div>
   );
-}
+};
 
 export default Product;

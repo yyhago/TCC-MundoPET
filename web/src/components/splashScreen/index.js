@@ -7,7 +7,7 @@ const SplashScreen = ({ onSplashEnd }) => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setFadeOut(true); // Inicia a animação de desaparecimento
+      setFadeOut(true); // Inicia a animação de desaparecimentoo
       setTimeout(() => {
         onSplashEnd(); // Chama a função para ocultar o splash screen
       }, 1000); // Tempo para a animação de desaparecimento
