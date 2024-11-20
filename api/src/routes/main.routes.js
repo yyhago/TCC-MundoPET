@@ -69,43 +69,37 @@ router.get("/petshops/:id", async (req, res) => {
 // Rota: Criar uma compra com divisão de pagamentos
 router.post("/purchase", async (req, res) => {
   try {
-    let payments; // Array de pagamentos
-    const petshopsMap = {}; // Mapeamento de recipient_id para email
+    let payments;
+    const petshopsMap = {};
 
-    // Obter todos os petshops para criar o mapeamento
-    const petshopsResponse = await axios.get(`${process.env.API_URL}/petshops`);
+    // Substitua pela URL completa da sua API
+    const petshopsResponse = await axios.get("https://tcc-mundo-pet-api.vercel.app/petshops");
     const petshops = petshopsResponse.data.petshops;
 
     petshops.forEach((petshop) => {
       petshopsMap[petshop.recipient_id] = petshop.email;
     });
 
-    // Verificar o formato do payload recebido
+    // Resto do código permanece o mesmo
     if (Array.isArray(req.body)) {
-      // Payload já no formato de pagamentos
       payments = req.body;
 
-      // Validação do array de pagamentos
       if (!payments.length || !payments[0]?.recipientEmail || !payments[0]?.amount) {
         throw new Error("Payload inválido: Certifique-se de enviar um array de pagamentos com recipientEmail e amount.");
       }
     } else {
-      // Payload no formato { items, split_rules }
       const { items, split_rules } = req.body;
 
       if (!items || !split_rules) {
         throw new Error("Payload inválido: Certifique-se de enviar 'items' e 'split_rules'.");
       }
 
-      // Criação dos pagamentos a partir das regras de divisão
       payments = split_rules.map((rule) => {
         const amount = (parseFloat(items[0].unit_price) * (rule.percentage / 100)).toFixed(2);
-
-        // Obter o email correspondente ao recipient_id
         const recipientEmail = petshopsMap[rule.recipient_id] || rule.recipient_id;
 
         return {
-          recipientEmail, // Email do petshop ou taxa administrativa
+          recipientEmail,
           recipientName: recipientEmail.includes("sb-qucx433316704@personal.example.com")
             ? "MundoPet Admin"
             : "Petshop Partner",
@@ -114,11 +108,11 @@ router.post("/purchase", async (req, res) => {
       });
     }
 
-    // Chamar o serviço para criar a transação no PayPal
     const transaction = await createSplitTransaction(payments);
-    res.json(transaction); // Retornar o resultado da transação
+    res.json(transaction);
   } catch (error) {
-    res.status(500).json({ error: true, message: error.message }); // Retornar erro em caso de falha
+    console.error("Erro na rota de compra:", error);
+    res.status(500).json({ error: true, message: error.message });
   }
 });
 
