@@ -108,7 +108,7 @@ const createSplitTransaction = async (payments) => {
     const payoutItems = [
       ...payments.map((payment, index) => ({
         recipient_type: "EMAIL",
-        amount: { value: parseFloat(payment.amount).toFixed(2), currency: "BRL" },
+        amount: { value: parseFloat(payment.amount), currency: "BRL" },
         note: `Pagamento para ${payment.recipientName}`,
         sender_item_id: `payment_${Date.now()}_${index}`,
         receiver: payment.recipientEmail,

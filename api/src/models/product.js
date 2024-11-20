@@ -5,7 +5,7 @@ const ProductSchema = new mongoose.Schema({
   nome: { 
     type: String, 
     required: true, 
-    trim: true // Remove espaços em branco
+    trim: true 
   }, 
   capa: { 
     type: String, 
@@ -14,17 +14,17 @@ const ProductSchema = new mongoose.Schema({
   preco: { 
     type: Number, 
     required: true, 
-    min: 0 // Preço não pode ser negativo
+    min: 0
   }, 
   avaliacoes: { 
     type: Number, 
     required: true, 
-    min: 0, // Avaliações não podem ser negativas
-    default: 0 // Valor padrão para evitar inconsistências
+    min: 0, 
+    default: 0 
   },
   petshop_id: { 
     type: mongoose.Schema.Types.ObjectId, 
-    ref: 'Petshop', // Faz referência ao modelo `Petshop`
+    ref: 'Petshop',
     required: true 
   }
 });
