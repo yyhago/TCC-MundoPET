@@ -103,9 +103,6 @@ input.form-control:focus {
 }
 
 @media (max-width: 767px) {
-  .row {
-    flex-direction: column;
-  }
 
   .box {
     padding: 20px;

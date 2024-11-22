@@ -35,6 +35,7 @@ const INITIAL_STATE = {
                 zipcode: '12',
             },
         },
+        isProcessing: false,
         shipping: {},
         items: [],
         split_rules: []
@@ -89,6 +90,12 @@ function shop(state = INITIAL_STATE, action) {
                 draft.transaction = { ...draft.transaction, ...action.transaction }
             });
         }
+
+        case 'SET_PROCESSING':
+        return {
+            ...state,
+            isProcessing: action.payload,
+        };
 
         default:
             return state;

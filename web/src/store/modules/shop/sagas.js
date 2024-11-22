@@ -39,6 +39,9 @@ export function* requestPetshop({ id }) {
 // Função para realizar uma compra
 export function* makePurchase() {
   try {
+
+    yield put({ type: 'SET_PROCESSING', payload: true });
+
     const { transaction } = yield select(state => state.shop);
     console.log('Transação:', transaction); // Log para depuração
     
@@ -50,6 +53,18 @@ export function* makePurchase() {
     if (!transaction.split_rules || transaction.split_rules.length === 0) {
       throw new Error('Regras de divisão não definidas.');
     }
+
+    Swal.fire({
+      title: 'Processando pagamento...',
+      text: 'Aguarde enquanto processamos sua compra.',
+      allowOutsideClick: false, 
+      didOpen: () => {
+        Swal.showLoading(); 
+      },
+      willClose: () => {
+        Swal.hideLoading();
+      }
+    });
     
     // Chamada da API para processar a compra
     const response = yield call(api.post, '/purchase', transaction);
@@ -74,7 +89,7 @@ export function* makePurchase() {
         setTimeout(() => {
           
           window.location.assign('/');
-        }, 2000);
+        }, 1000);
       });
   } catch (error) {
     console.error('Erro na compra:', error);
@@ -83,7 +98,9 @@ export function* makePurchase() {
       title: 'Erro na compra',
       text: error.message || 'Ocorreu um erro ao processar sua compra.'
     });
-  }
+  } finally {
+     yield put({ type: 'SET_PROCESSING', payload: false });
+    }
 }
 
 // Exportação das sagas
