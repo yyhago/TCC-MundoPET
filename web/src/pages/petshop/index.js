@@ -39,8 +39,8 @@ const PetShop = () => {
               <Icon path={mdiCash} size={1} className="petshop-icon cash-icon" />
               <text><b>{petshop.categoria}</b></text>
 
-              <Icon path={mdiGoogleMaps} size={1} className="petshop-icon google-maps-icon" />
-              <text><b>{petshop.location?.lat}, {petshop.location?.lng}</b></text>
+              <br/><Icon path={mdiGoogleMaps} size={1} className="petshop-icon google-maps-icon" />
+              <text><b>12 Minutos de você</b></text>
             </div>
 
             <label className="badge badge-primary">Frete Grátis</label>
