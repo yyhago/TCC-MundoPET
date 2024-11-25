@@ -98,14 +98,14 @@ Estudante do Centro Paula Souza - ETEC de Hortolândia, apaixonado por tecnologi
 
 ## 🔗 Links Úteis
 
-- [Portfólio do Desenvolvedor](www.linkedin.com/in/yhagofelipe)
+- [Portfólio do Desenvolvedor](https://www.linkedin.com/in/yhagofelipe/)
 - [Repositório do Projeto no GitHub](https://github.com/yyhago)
 - [Apresentação do TCC](https://tcc-mundo-pet-web.vercel.app/)
 
 ## 📞 Contato
 
 [yhago.felipe.teles@gmail.com]
-[Linkedin]
+[yhagofelipe]
 
 
 ---
