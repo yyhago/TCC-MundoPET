@@ -188,6 +188,7 @@ const Cadastro = () => {
                 type="date"
                 className={`form-control form-control-lg mb-3 ${errors.birthday ? 'is-invalid' : ''}`}
                 value={customer.birthday}
+                placeholder="dd/mm/aaaa"
                 onChange={(e) => setCustomerState({ ...customer, birthday: e.target.value })}
               />
               {errors.birthday && <div className="invalid-feedback mb-3">{errors.birthday}</div>}
